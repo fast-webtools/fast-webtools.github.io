@@ -1,6 +1,42 @@
 import React, { useState, ChangeEvent } from 'react';
-import { Button } from './ui/button.tsx';
 import { FileImage, Download } from 'lucide-react';
+import { cn } from "@/lib/utils"; // Assuming you're using utilities for class merging
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'default' | 'outline' | 'subtle';
+  size?: 'default' | 'sm' | 'lg';
+  className?: string;
+}
+
+const Button: React.FC<ButtonProps> = ({ 
+  children, 
+  variant = 'default', 
+  size = 'default', 
+  className, 
+  ...props 
+}) => {
+  return (
+    <button
+      className={cn(
+        "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors",
+        {
+          "bg-primary text-primary-foreground hover:bg-primary/90": variant === 'default',
+          "border border-input bg-background hover:bg-accent": variant === 'outline',
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80": variant === 'subtle'
+        },
+        {
+          "h-10 px-4 py-2": size === 'default',
+          "h-8 px-3 text-xs": size === 'sm',
+          "h-12 px-6": size === 'lg'
+        },
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
 
 const ImageConverter: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -17,7 +53,6 @@ const ImageConverter: React.FC = () => {
 
   const convertImage = () => {
     if (!selectedFile) return;
-
     const reader = new FileReader();
     reader.onload = (e) => {
       const img = new Image();
@@ -39,7 +74,6 @@ const ImageConverter: React.FC = () => {
 
   const downloadImage = () => {
     if (!convertedImage) return;
-
     const link = document.createElement('a');
     link.href = convertedImage;
     link.download = `converted-image.${targetFormat}`;
@@ -58,7 +92,6 @@ const ImageConverter: React.FC = () => {
           className="w-full p-2 border rounded"
         />
       </div>
-
       <div className="mb-4">
         <label className="block mb-2">Target Format:</label>
         <select 
@@ -71,7 +104,6 @@ const ImageConverter: React.FC = () => {
           <option value="webp">WebP</option>
         </select>
       </div>
-
       <div className="flex space-x-4">
         <Button 
           onClick={convertImage} 
@@ -89,7 +121,6 @@ const ImageConverter: React.FC = () => {
           <Download className="mr-2" /> Download
         </Button>
       </div>
-
       {convertedImage && (
         <div className="mt-4 text-center">
           <h2 className="mb-2 font-semibold">Converted Image:</h2>
