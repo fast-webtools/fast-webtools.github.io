@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageConverter from './components/ImageConverter';
+import ImageConverter from './components/ImageConverter.tsx';
 
 function App() {
   return (
