@@ -2,7 +2,7 @@
   "name": "image-converter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://[YOUR-GITHUB-USERNAME].github.io/image-converter",
+  "homepage": "https://fast-webtools.github.io/image-converter",
   "dependencies": {
     "@shadcn/ui": "latest",
     "lucide-react": "latest",
