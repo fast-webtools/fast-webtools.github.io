@@ -8,7 +8,8 @@
     "lucide-react": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwindcss": "latest"
+    "tailwindcss": "latest",
+    "react-scripts": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
