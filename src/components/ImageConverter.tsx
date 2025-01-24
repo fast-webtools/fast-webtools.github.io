@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
-import { Button } from '@/components/ui/button.tsx';
+import { Button } from './ui/button.tsx';
 import { FileImage, Download } from 'lucide-react';
 
 const ImageConverter: React.FC = () => {
